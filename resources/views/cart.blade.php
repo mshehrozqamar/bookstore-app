@@ -45,9 +45,12 @@
 <body>
     <div class="container mt-3">
         <div class="row rows-cols-3">
-            <div class="col-9">
+            <div class="col-6">
                 <h1>Cart</h1>
             </div>
+            <div class="col-3 mt-3">
+                    <h6>{{Auth::user()->name}}</h6>
+                </div>
             <div class="col mt-2">
                 <a href="/home"><button class="btn btn-primary">Home</button></a>
             </div>
@@ -71,11 +74,13 @@
                 @foreach($carts as $cart)
                 <div class="cart-item d-flex justify-content-between">
                     <div class="d-flex">
-                        <img src="{{$cart->picture}}" alt="Product" class="product-img me-3" />
+                        <img src="{{$cart->book->picture}}" alt="Product" class="product-img me-3" />
                         <div>
-                            <h5>{{$cart->name}}</h5>
+                            <h5>{{$cart->book->name}}</h5>
                             <p class="text-muted">
-                                {{$cart->discription}}
+                                Author: {{$cart->book->author}}
+                                <br>
+                                Publisher: {{$cart->book->publisher}}
                             </p>
                             <div class="row">
                                 <div class="col mt-2">
@@ -102,7 +107,7 @@
                     </div>
                     <div class="d-flex flex-column justify-content-between">
                         @php 
-                            $item_total = $cart->price*$cart->quantity;
+                            $item_total = $cart->book->price*$cart->quantity;
                             $total = $total+$item_total; 
                         @endphp
 
@@ -129,11 +134,11 @@
                         </li>
                         <li class="d-flex justify-content-between">
                             <span>Shipping:</span>
-                            <span>$10.00</span>
+                            <span>{{$shipping = (2*$total)/100}}</span>
                         </li>
                         <li class="d-flex justify-content-between">
                             <span class="total-price">Total:</span>
-                            <span class="total-price">${{ $total + 10 }}</span>
+                            <span class="total-price">${{ $total + $shipping }}</span>
                         </li>
                     </ul>
                     <a href="/checkout">
