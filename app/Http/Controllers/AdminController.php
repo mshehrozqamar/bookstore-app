@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Admin;
 
 use Alert;
+use RealRashid\SweetAlert\Facades\Alert as FacadesAlert;
 
 class AdminController extends Controller
 {
@@ -25,11 +26,11 @@ class AdminController extends Controller
             }
         }
         if($check == TRUE){
-            Alert::success('Congratulations!', 'Admin Login Successful');
+            FacadesAlert::success('Congratulations!', 'Admin Login Successful');
             return redirect('admin-portal');
         }
         else{
-            Alert::warning('Opps!', 'Wrong Email or Password');
+            FacadesAlert::warning('Opps!', 'Wrong Email or Password');
             return redirect()->back();
         }
     }

@@ -78,7 +78,6 @@ class CustomerController extends Controller
     }
 
     function signOut(Request $request){
-        Cart::truncate();
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();

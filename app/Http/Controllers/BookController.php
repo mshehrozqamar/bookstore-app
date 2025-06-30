@@ -21,9 +21,8 @@ class BookController extends Controller
     }
 
     function listAdminBooks(){
-        // $books = Book::all();
-        // return view('admin-portal', ['books'=>$books]);
-        return Auth::getUser();
+        $books = Book::all();
+        return view('admin-portal', ['books'=>$books]);
     }
 
     function addBook(Request $request){

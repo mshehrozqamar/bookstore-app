@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BookController;
-use App\Http\Controllers\CartController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,12 +31,5 @@ Route::put('/update-book/{id}', [BookController::class, 'updateBook']);
 Route::middleware('auth')->group(function(){
     Route::view('add-books', 'add-books');
     Route::get('home', [BookController::class, 'listBooks']);
-    Route::post('/add-to-cart/{id}', [CartController::class, 'addToCart']);
-    Route::get('/cart', [CartController::class, 'listCart']);
-    Route::get('/remove-cart/{id}', [CartController::class, 'deleteItem']);
-    Route::get('decrement/{id}', [CartController::class, 'decrement']);
-    Route::get('/increment/{id}', [CartController::class, 'increment']);
-    Route::get('/checkout', [CartController::class, 'checkout']);
-    Route::get('/send-mail', [CartController::class, 'sendMail']);
     Route::get('/sign-out', [CustomerController::class, 'signOut']);
 });
