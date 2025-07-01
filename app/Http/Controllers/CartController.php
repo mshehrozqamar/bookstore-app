@@ -32,6 +32,8 @@ class CartController extends Controller
         $new_cart->save();
         return redirect()->back();
     }
+
+
     function listCart(){
         $user = Auth::user();
         $carts = $user->cart;
@@ -40,6 +42,8 @@ class CartController extends Controller
         }
         return view('cart',['carts'=>$carts]);
     }
+
+
     function increment($id){
         $carts = Cart::where('id', $id)->get();
         foreach($carts as $cart){
@@ -54,6 +58,8 @@ class CartController extends Controller
             }
         }
     }
+
+
     function decrement($id){
         $carts = Cart::where('id', $id)->get();
         foreach($carts as $cart){
@@ -67,6 +73,8 @@ class CartController extends Controller
             }
         }
     }
+
+
     function removeFromCart($id){
         $carts = Cart::where('id', $id)->get();
         foreach($carts as $cart){
@@ -75,6 +83,7 @@ class CartController extends Controller
         }
     }
 
+    
     function cartCheckout(){
         $carts = Cart::where('user_id', Auth::user()->id)->get();
         $order = Order::create([

@@ -5,6 +5,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,6 +28,11 @@ Route::post('add-new-book', [BookController::class, 'addBook']);
 Route::get('delete-book/{id}', [BookController::class, 'deleteBook']);
 Route::get('populate/{id}', [BookController::class, 'populateForm']);
 Route::put('/update-book/{id}', [BookController::class, 'updateBook']);
+Route::get('/orders', [OrderController::class, 'listOrder']);
+Route::get('/delete-order/{id}', [OrderController::class, 'deleteOrder']);
+Route::get('view-order/{id}', [OrderController::class, 'orderDetails']);
+Route::get('confirm-order/{id}', [OrderController::class, 'orderConfirm']);
+
 
 
 Route::middleware('auth')->group(function(){
