@@ -78,10 +78,19 @@
                         <button class="btn btn-secondary">View</button>
                     </a>
                     <a href="/confirm-order/{{$order->id}}">
-                        <button class="btn btn-secondary">Confirm</button>
+                        @if ($order->status == "Confirmed")
+                            <button class="btn btn-secondary" disabled>Confirm</button>
+                        @else
+                            <button class="btn btn-secondary">Confirm</button>
+                        @endif   
                     </a>
                     <a href="/delete-order/{{$order->id}}">
-                        <button class="btn btn-secondary">Cancel</button>
+                        @if ($order->status == "Confirmed")
+                            <button class="btn btn-secondary" disabled>Cancel</button>
+                        @else
+                            <button class="btn btn-secondary">Cancel</button>
+                        @endif   
+                        
                     </a>
                 </td>
             </tr>
